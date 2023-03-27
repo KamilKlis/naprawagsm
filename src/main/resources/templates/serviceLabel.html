@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+	<body>
+		<nav
+		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+			<p style="width: 50%; float: left;">naprawagsm.pl</p>
+			<div style="float: right; border-left: solid gray;">
+				<button>Zarejestruj się</button>
+				<button>Zaloguj</button>
+			</div>
+		</nav>
+			
+		<form action="drukujetykiete">
+			<div align="center" style="margin-top: 50px">
+				<label for="repair description">Opis usterki:</label>
+				<textarea id="repair description" name="opis usterki" rows="10" cols="40"></textarea><br><br>
+				<label for="brand">Marka telefonu:</label>
+				<select id="brand">
+					<option>Samsung</option>
+					<option>Iphone</option>
+					<option>Xiaomi</option>
+					<option>Lg</option>
+					<option>Huawei</option>
+					<option>Sony</option>
+					<option>Inne</option>
+				</select><br>
+				<label for="model">Model telefonu:</label>
+				<input id="model" name="model" type="text"><br>
+				<label for="phone status">Stan telefonu:</label>
+				<input id="phone status" name="stan telefonu" type="text"><br>
+				<label for="max amount">Maksymalna kwota naprawy:</label>
+				<input id="max amount" name="max kwota naprawy" type="text"><br>
+				<label for="owner name">Imie Nazwisko:</label>
+				<input id="owner name" name="imię i nazwisko" type="text"><br>
+				<label for="phone number">Numer telefonu:</label>
+				<input id="phone number" name="numer telefonu" type="text"><br>
+				<div style="margin-top: 30px">
+					<button>Dodaj i drukuj</button>
+				</div>
+			</div>
+		</form>
+		
+	</body>
+</html>

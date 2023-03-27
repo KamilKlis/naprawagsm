@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Naprawa GSM</title>
+	<style type="text/css">
+		table {
+			 width: 80%;align-content: center;text-align: center;
+		}
+	
+		table,th,td {
+			border:solid gray;border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+	<nav
+		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+		<p style="width: 50%; float: left;">naprawagsm.pl</p>
+		<div style="float: right; border-left: solid gray;">
+			<button>Zarejestruj się</button>
+			<button>Zaloguj</button>
+		</div>
+	</nav>
+	<main style="display: flex;">
+		<section id="priceListMainSection" style="width: 70%;">
+			<div id="priceListButtons" align="center">
+				<button id="samsungButton">Samsung</button>
+				<button id="appleButton">Iphone</button>
+				<button id="xiaomiButton">Xiaomi</button>
+				<button id="motorolaButton">Motorola</button>
+				<button id="huaweiButton">Huawei</button>
+				<button id="sonyButton">Sony</button>
+				<button id="othersButton">Inne</button>
+			</div>
+			<div id="priceListTable"
+				style="margin-bottom: 30px; display: flex; justify-content: center;">
+				<div id="priceListToChange"
+					style="flex: 70%; display: flex; align-items: center; justify-content: center;">
+					<table>
+						<tr>
+							<th>MODEL</th>
+							<th>LCD</th>
+							<th>BATERIA</th>
+							<th>GŁOŚNIK</th>
+						</tr>
+						<tr id="pricelistRow" th:each="repair : ${repairPrices}">
+							<td th:if="${repair.brand eq 'Iphone'}" id="model" th:text="${repair.model}">Samsung A40</td>
+							<td th:if="${repair.brand eq 'Iphone'}" id="lcd" th:text="${repair.lcd}">99999</td>
+							<td th:if="${repair.brand eq 'Iphone'}" id="battery" th:text="${repair.battery}">88888</td>
+							<td th:if="${repair.brand eq 'Iphone'}" id="speaker" th:text="${repair.speaker}">77777</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</section>
+		<section id="clientRepairs" 
+			style="width: 30%;">
+			<div>
+				<a href="kwit"><button>Wypisz kwit serwisowy</button></a>
+			</div>
+			<div>
+				<a href="https://inpost.pl/wysylam"><button>Zamów kuriera</button></a>
+			</div>
+			<div>
+				<a href="Twoje-serwisy"><button>Zobacz aktualne serwisy</button></a>
+			</div>
+		</section>
+	</main>
+
+	<script th:inline="javascript">
+		let allButtonsList=["samsungButton","appleButton","xiaomiButton","motorolaButton","huaweiButton","sonyButton","othersButton"];
+		setPriceListButtonEvents();
+		
+		function setPriceListButtonEvents(){
+			for(i=0;i<allButtonsList.length;i++){
+				clickButton(allButtonsList[i]);
+			}
+		}
+		
+			function clickButton(buttonId){
+				let selectedButton=document.getElementById(buttonId);
+				selectedButton.addEventListener("click",addTableRow);
+			
+				function addTableRow(){
+					let allRepairsList=/*[[${repairPrices}]]*/ "list";
+					let newList=new Array;
+					let priceListTable=document.getElementById("priceListToChange");
+					writeToNewList(selectedButton.innerText);
+					createNewTableRow();
+					
+					
+					function writeToNewList(brand){
+						for(let repair of allRepairsList){
+							if(repair.brand===brand){
+								newList.push(repair);
+							}
+						}
+					}
+					function createNewTableRow(){
+						let tableWithSelectedValues=document.createElement("table");
+						addHeadersToTable();
+						addValuesToTable();
+						priceListTable.replaceChildren(tableWithSelectedValues);
+						
+							function addHeadersToTable(){
+								createSingleRow("MODEL","LCD","BATERIA","GŁOŚNIK");
+							}
+							function addValuesToTable(){
+								for(i=0;i<newList.length;i++){
+									createSingleRow(newList[i].model,newList[i].lcd,newList[i].battery,newList[i].speaker);
+								}
+							}	
+								function createSingleRow(model,lcd,battery,speaker){
+									let newRow=document.createElement("tr");
+									let newTd1=document.createElement("td");
+									let newTd2=document.createElement("td");
+									let newTd3=document.createElement("td");
+									let newTd4=document.createElement("td");
+									let newTdText1=document.createTextNode(model);
+									let newTdText2=document.createTextNode(lcd);
+									let newTdText3=document.createTextNode(battery);
+									let newTdText4=document.createTextNode(speaker);
+									newTd1.appendChild(newTdText1);
+									newTd2.appendChild(newTdText2);
+									newTd3.appendChild(newTdText3);
+									newTd4.appendChild(newTdText4);
+									newRow.appendChild(newTd1);
+									newRow.appendChild(newTd2);
+									newRow.appendChild(newTd3);
+									newRow.appendChild(newTd4);
+									tableWithSelectedValues.appendChild(newRow);
+								} 
+
+					}
+				}
+			}
+	</script>
+</body>
+</html>
