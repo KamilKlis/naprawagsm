@@ -11,11 +11,9 @@ public class RepairController {
 		return "serviceLabel";
 	}
 
-//	@RequestMapping("/Twoje Serwisy")
-//	public String currentSevices(Model model) {
-//		String currentRepair = priceList.getAllRepairs();
-//		model.addAttribute("currentRepair", currentRepair);
-//		return "currentRepairs";
-//	}
+	@RequestMapping("/twojeserwisy")
+	public String currentRepairs() {
+		return "currentRepairs";
+	}
 	
 }
