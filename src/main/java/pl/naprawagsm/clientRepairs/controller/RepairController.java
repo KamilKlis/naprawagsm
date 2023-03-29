@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pl.naprawagsm.clientRepairs.repository.Repair;
+
 @Controller
 public class RepairController {
 	
@@ -14,7 +16,7 @@ public class RepairController {
 
 	@RequestMapping("/twojeserwisy")
 	public String currentRepairs(Model model) {
-		model.addAttribute("example", "coś");
+		model.addAttribute("repair", new Repair());
 		return "currentRepairs";
 	}
 	
