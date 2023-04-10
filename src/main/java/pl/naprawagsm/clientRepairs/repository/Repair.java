@@ -11,6 +11,7 @@ public class Repair {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String phoneBrand;
 	private String phoneModel;
 	private String phoneCondition;
 	private String faultDescription;
@@ -19,9 +20,10 @@ public class Repair {
 	private String clientPhoneNumber;
 	
 	
-	public Repair(String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,
+	public Repair(String phoneBrand, String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,
 			String clientName, String clientPhoneNumber) {
 		super();
+		this.phoneBrand = phoneBrand;
 		this.phoneModel = phoneModel;
 		this.phoneCondition = phoneCondition;
 		this.faultDescription = faultDescription;
@@ -31,6 +33,14 @@ public class Repair {
 	}
 	
 	public Repair() {}
+	
+	public String getPhoneBrand() {
+		return phoneBrand;
+	}
+
+	public void setPhoneBrand(String phoneBrand) {
+		this.phoneBrand = phoneBrand;
+	}
 
 	public String getPhoneModel() {
 		return phoneModel;

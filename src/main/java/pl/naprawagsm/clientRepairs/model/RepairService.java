@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import pl.naprawagsm.clientRepairs.repository.Repair;
 import pl.naprawagsm.clientRepairs.repository.RepairRepository;
+import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
+import pl.naprawagsm.clientRepairs.repository.dto.RepairMapper;
 
 @Service
 public class RepairService {
@@ -19,7 +21,7 @@ public class RepairService {
 		this.repo = repo;
 	}
 
-	public List<Repair> getaAllRepairs(){
+	public List<Repair> getAllRepairs(){
 		List<Repair> list=new ArrayList<Repair>();
 		Iterator<Repair> repairs = repo.findAll().iterator();
 		while(repairs.hasNext()) {
@@ -28,8 +30,27 @@ public class RepairService {
 		return list;
 	}
 	
-	public void addRepair(Repair repair) {
-		repo.save(repair);
+	public boolean addRepair(Repair repair) {
+		List<RepairDto> allRepairs = getAllRepairs().stream().map(RepairMapper::map).toList();
+		if(!allRepairs.contains(RepairMapper.map(repair))) {
+			repo.save(repair);
+			return true;
+		}
+		else {
+			System.out.println("Notatka jest juz zapisana");
+			return false;
+		}
 	}
 	
+//	public boolean addRepair(Repair repair) {
+//		List<Repair> allRepairs = getAllRepairs();
+//		if(!allRepairs.contains(repair)) {
+//			repo.save(repair);
+//			return true;
+//		}
+//		else {
+//			System.out.println("Notatka jest juz zapisana");
+//			return false;
+//		}
+//	}
 }

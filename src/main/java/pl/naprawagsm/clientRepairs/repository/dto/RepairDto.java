@@ -1,5 +1,6 @@
 package pl.naprawagsm.clientRepairs.repository.dto;
 
+import java.util.Objects;
 
 public class RepairDto {
 	
@@ -87,4 +88,27 @@ public class RepairDto {
 				+ faultDescription + ", maxAmount=" + maxRepairAmount + ", clientName=" + clientName + ", clientPhoneNumber="
 				+ clientPhoneNumber;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(clientName, clientPhoneNumber, faultDescription, maxRepairAmount, phoneBrand,
+				phoneCondition, phoneModel);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RepairDto other = (RepairDto) obj;
+		return Objects.equals(clientName, other.clientName)
+				&& Objects.equals(clientPhoneNumber, other.clientPhoneNumber)
+				&& Objects.equals(faultDescription, other.faultDescription) && maxRepairAmount == other.maxRepairAmount
+				&& Objects.equals(phoneBrand, other.phoneBrand) && Objects.equals(phoneCondition, other.phoneCondition)
+				&& Objects.equals(phoneModel, other.phoneModel);
+	}
+	
 }
