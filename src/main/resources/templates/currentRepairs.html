@@ -22,6 +22,7 @@
 				<button>Zaloguj</button>
 			</div>
 	</nav>
+	<h1 style="color:red" th:if="${addedRepairIsAlreadyInDatabase}">Serwis jest już wpisany do bazy</h1>
 	<div>
 		<table>
 			<tr>
@@ -33,32 +34,14 @@
 				<td>OPIS USTERKI</td>
 				<td>STAN TELEFONU</td>
 			</tr>
-			<tr>
-				<td>Jan Kowalski</td>
-				<td>764231453</td>
-				<td>Samsung</td>
-				<td>A50</td>
-				<td>160</td>
-				<td>wymiana baterii</td>
-				<td>lekkie ślady użytkowania</td>
-			</tr>
-			<tr>
-				<td>Emil Szyszko</td>
-				<td>890777659</td>
-				<td>Iphone</td>
-				<td>Xs</td>
-				<td>530</td>
-				<td>wymiana LCD</td>
-				<td>Rozbity wyświetlacz, rozbity tył telefonu</td>
-			</tr>
-			<tr>
-				<td>Tomasz Rock</td>
-				<td>543655787</td>
-				<td>Iphone</td>
-				<td>6</td>
-				<td>180</td>
-				<td>wymiana LCD</td>
-				<td>Rozbity wyświetlacz, obite górne rogi telefonu</td>
+			<tr th:each="repair : ${repairList}">
+				<td th:text=${repair.clientName}></td>
+				<td th:text=${repair.clientPhoneNumber}></td>
+				<td th:text=${repair.phoneBrand}></td>
+				<td th:text=${repair.phoneModel}></td>
+				<td th:text=${repair.maxRepairAmount}></td>
+				<td th:text=${repair.faultDescription}></td>
+				<td th:text=${repair.phoneCondition}></td>
 			</tr>
 		</table>
 	</div>
