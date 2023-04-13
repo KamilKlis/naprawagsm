@@ -18,8 +18,9 @@
 		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
 		<p style="width: 50%; float: left;">naprawagsm.pl</p>
 		<div style="float: right; border-left: solid gray;">
-			<button>Zarejestruj się</button>
-			<button>Zaloguj</button>
+			<button th:if="#{authetication.isAutheticated}" id="logoutButton">Wyloguj się</button>
+			<button th:unless="#{authentication.isAuthenticated}">Zarejestruj się</button>
+			<button th:unless="#{authetication.isAutheticated}">Zaloguj</button>
 		</div>
 	</nav>
 	<main style="display: flex;">
@@ -69,6 +70,14 @@
 	</main>
 
 	<script th:inline="javascript">
+		logoutButtonEvent();
+		function logoutButtonEvent(){
+			document.getElementById("logoutButton").onclick=function(){
+				location.href="/logout";
+			}
+		}
+	
+	
 		let allButtonsList=["samsungButton","appleButton","xiaomiButton","motorolaButton","huaweiButton","sonyButton","othersButton"];
 		setPriceListButtonEvents();
 		
