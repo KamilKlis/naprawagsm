@@ -139,5 +139,5 @@ buildNumber.properties
 .mvn/
 mvnw
 mvnw.cmd
-pom.xml
+
 
