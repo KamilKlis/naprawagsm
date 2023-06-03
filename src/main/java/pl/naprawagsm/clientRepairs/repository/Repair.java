@@ -4,8 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.ManyToOne;
 import pl.naprawagsm.security.repository.User;
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Repair {
@@ -14,11 +19,19 @@ public class Repair {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String phoneBrand;
+	@NotBlank
 	private String phoneModel;
+	@NotBlank
 	private String phoneCondition;
+	@NotBlank
 	private String faultDescription;
+	@NotBlank
+	@Min(value = 0L)
 	private int maxRepairAmount;
+	@NotBlank
 	private String clientName;
+	@NotBlank
+	@Size(min = 9,max = 9)
 	private String clientPhoneNumber;
 	@ManyToOne
 	private User user;
