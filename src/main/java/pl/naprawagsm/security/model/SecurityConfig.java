@@ -1,4 +1,4 @@
-package pl.naprawagsm.security;
+package pl.naprawagsm.security.model;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
