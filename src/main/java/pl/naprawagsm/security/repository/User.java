@@ -1,6 +1,5 @@
 package pl.naprawagsm.security.repository;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -25,7 +24,7 @@ public class User {
 	@JoinTable(name = "user_roles",
 			   joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 			   inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
-	private Set<UserRoles> roles=new HashSet<>();
+	private Set<UserRoles> roles;
 	
 	public User() {}
 	
