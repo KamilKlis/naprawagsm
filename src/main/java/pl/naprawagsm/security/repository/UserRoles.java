@@ -12,14 +12,13 @@ public class UserRoles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String userRole;
+	private String user_role;
 	
 	public UserRoles() {}
 	
-	public UserRoles(Long id, String userRole) {
+	public UserRoles(String userRole) {
 		super();
-		this.id = id;
-		this.userRole = userRole;
+		this.user_role = userRole;
 	}
 
 	public Long getId() {
@@ -31,10 +30,17 @@ public class UserRoles {
 	}
 
 	public String getUserRole() {
-		return userRole;
+		return user_role;
 	}
 
 	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+		this.user_role = userRole;
 	}
+
+	@Override
+	public String toString() {
+		return "to jest roli [id=" + id + ", user_role=" + user_role + "]";
+	}
+	
+	
 }

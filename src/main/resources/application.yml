@@ -8,7 +8,3 @@ spring:
       show-sql: true
       hibernate:
          ddl-auto: update
-   security:
-      user:
-         name: Kamil
-         password: java2023

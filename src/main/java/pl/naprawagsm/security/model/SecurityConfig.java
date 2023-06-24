@@ -19,7 +19,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(requests->requests
 				.requestMatchers("/").permitAll()
 				.requestMatchers(HttpMethod.POST, "/logout").permitAll()
-				.anyRequest().hasRole("admin"));
+				.anyRequest().hasRole("ADMIN"));
 		http.formLogin(form->form
 				.loginPage("/login").permitAll());
 		http.logout(logout->logout

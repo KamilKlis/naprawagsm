@@ -1,5 +1,6 @@
 package pl.naprawagsm.security.repository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -24,13 +25,12 @@ public class User {
 	@JoinTable(name = "user_roles",
 			   joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 			   inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
-	private Set<UserRoles> roles;
+	private Set<UserRoles> roles=new HashSet<>();
 	
 	public User() {}
 	
-	public User(Long id, String username, String password, Set<UserRoles> roles) {
+	public User(String username, String password, Set<UserRoles> roles) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
@@ -67,4 +67,10 @@ public class User {
 	public void setRoles(Set<UserRoles> roles) {
 		this.roles = roles;
 	}
+
+	@Override
+	public String toString() {
+		return "to jest [id=" + id + ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
+	}
+	
 }
