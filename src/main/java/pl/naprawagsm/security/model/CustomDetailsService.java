@@ -27,7 +27,7 @@ public class CustomDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User finddedUser = userRepository.findByUsername(username).orElseThrow(
-				() -> new NullPointerException());
+				() -> new UsernameNotFoundException(username));
 		Set<UserRoles> roles = finddedUser.getRoles();
 		String[] rolesArray = roles.stream().map(role->role.getUserRole()).toArray(String[]::new);
 		String encodedPassword = encoder.encode(finddedUser.getPassword());
