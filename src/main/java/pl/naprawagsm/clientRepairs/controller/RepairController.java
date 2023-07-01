@@ -13,7 +13,7 @@ import pl.naprawagsm.clientRepairs.repository.Repair;
 @Controller
 public class RepairController {
 	
-	RepairService repairService;
+	private RepairService repairService;
 	
 	public RepairController(RepairService repairService) {
 		super();

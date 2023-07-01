@@ -11,7 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import pl.naprawagsm.clientRepairs.repository.Repair;
 
 @Entity
 @Table(name = "application_user")
@@ -26,6 +28,9 @@ public class User {
 			   joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 			   inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
 	private Set<UserRoles> roles=new HashSet<>();
+	@OneToMany
+	@JoinColumn(name="user_id")
+	private Set<Repair> repairs;
 	
 	public User() {}
 	
@@ -66,6 +71,15 @@ public class User {
 
 	public void setRoles(Set<UserRoles> roles) {
 		this.roles = roles;
+	}
+
+	
+	public Set<Repair> getRepairs() {
+		return repairs;
+	}
+
+	public void setRepairs(Set<Repair> repairs) {
+		this.repairs = repairs;
 	}
 
 	@Override
