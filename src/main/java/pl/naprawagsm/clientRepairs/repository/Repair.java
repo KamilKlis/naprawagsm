@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import pl.naprawagsm.security.repository.User;
 
 @Entity
 public class Repair {
@@ -18,6 +20,8 @@ public class Repair {
 	private int maxRepairAmount;
 	private String clientName;
 	private String clientPhoneNumber;
+	@ManyToOne
+	private User user;
 	
 	
 	public Repair(String phoneBrand, String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,
@@ -88,6 +92,14 @@ public class Repair {
 
 	public void setClientPhoneNumber(String clientPhoneNumber) {
 		this.clientPhoneNumber = clientPhoneNumber;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

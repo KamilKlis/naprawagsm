@@ -41,13 +41,13 @@ public class RepairController {
 	}
 	@GetMapping("/serwis")
 	public String toRepair(Model model) {
-		model.addAttribute("repairList", repairService.getAllRepairs());
+		model.addAttribute("repairList", repairService.getRepairsOfCurrentUser());
 		return "currentRepairs";
 	}
 	
 	@GetMapping("/duplicate")
 	public String duplicate(Model model) {
-		model.addAttribute("repairList", repairService.getAllRepairs());
+		model.addAttribute("repairList", repairService.getRepairsOfCurrentUser());
 		model.addAttribute("addedRepairIsAlreadyInDatabase", true);
 		return "currentRepairs";
 	}

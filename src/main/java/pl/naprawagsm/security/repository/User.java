@@ -28,8 +28,7 @@ public class User {
 			   joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 			   inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
 	private Set<UserRoles> roles=new HashSet<>();
-	@OneToMany
-	@JoinColumn(name="user_id")
+	@OneToMany(mappedBy = "user")
 	private Set<Repair> repairs;
 	
 	public User() {}

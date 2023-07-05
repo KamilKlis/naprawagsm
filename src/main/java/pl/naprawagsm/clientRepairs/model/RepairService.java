@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,21 @@ public class RepairService {
 		this.repairRepository = repairRepository;
 		this.userRepository = userRepository;
 	}
+	
+	public List<Repair> getRepairsOfCurrentUser(){
+		List<Repair> list=new ArrayList<Repair>();
+		String user = SecurityContextHolder.getContext().getAuthentication().getName();
+		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
+				() -> new UsernameNotFoundException(user));
+		Long userId = finddedUsername.getId();
+		List<Repair> finddedRepairsList = repairRepository.findAllByUser_id(userId);
+		for(Repair repair:finddedRepairsList) {
+			if(repair.getUser().getId().equals(userId)) {
+				list.add(repair);
+			}
+		}
+		return list;
+	}
 
 	public List<Repair> getAllRepairs(){
 		List<Repair> list=new ArrayList<Repair>();
@@ -42,8 +58,8 @@ public class RepairService {
 		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
 				() -> new UsernameNotFoundException(user));
 		finddedUsername.getRepairs().add(repair);
-		
 		if(!allRepairs.contains(RepairMapper.map(repair))) {
+			repair.setUser(finddedUsername);
 			repairRepository.save(repair);
 			userRepository.save(finddedUsername);
 			return true;
