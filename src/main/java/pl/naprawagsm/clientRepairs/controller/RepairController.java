@@ -2,11 +2,13 @@ package pl.naprawagsm.clientRepairs.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import pl.naprawagsm.clientRepairs.model.RepairService;
 import pl.naprawagsm.clientRepairs.repository.Repair;
 
@@ -27,17 +29,18 @@ public class RepairController {
 	}
 
 	@PostMapping("/twojeserwisy")
-	public String currentRepairs(Model model,@RequestParam String markatelefonu, @RequestParam String modeltelefonu, @RequestParam String opisusterki,
-								@RequestParam String stantelefonu, @RequestParam int maxkwotanaprawy,
-								@RequestParam String imięinazwisko, @RequestParam String numertelefonu) {
-		Repair repair =new Repair(markatelefonu, modeltelefonu, stantelefonu, opisusterki, maxkwotanaprawy, imięinazwisko, numertelefonu);
-		boolean addRepair = repairService.addRepair(repair);
-		if(addRepair) {
-			return "redirect:serwis?model="+modeltelefonu;
-		}
-		else {
-			return "redirect:duplicate";
-		}
+	public String currentRepairs(@Valid @ModelAttribute Repair repair,BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "redirect:kwit";
+		}else {
+			boolean addRepair = repairService.addRepair(repair);
+			if(addRepair) {
+				return "redirect:serwis?model=";
+			}
+			else {
+				return "redirect:duplicate";
+			}
+		}	
 	}
 	@GetMapping("/serwis")
 	public String toRepair(Model model) {
@@ -51,6 +54,5 @@ public class RepairController {
 		model.addAttribute("addedRepairIsAlreadyInDatabase", true);
 		return "currentRepairs";
 	}
-	
 	
 }

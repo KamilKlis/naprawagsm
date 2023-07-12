@@ -25,7 +25,6 @@ public class Repair {
 	private String phoneCondition;
 	@NotBlank
 	private String faultDescription;
-	@NotBlank
 	@Min(value = 0L)
 	private int maxRepairAmount;
 	@NotBlank

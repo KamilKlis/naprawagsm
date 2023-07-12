@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -17,9 +17,9 @@
 		<form action="twojeserwisy" method="post">
 			<div align="center" style="margin-top: 50px">
 				<label for="repair description">Opis usterki:</label>
-				<textarea id="repair description" name="opisusterki" rows="10" cols="40"></textarea><br><br>
+				<textarea id="repair description" rows="10" cols="40" name="faultDescription"></textarea><br><br>
 				<label for="brand">Marka telefonu:</label>
-				<select id="brand" name="markatelefonu">
+				<select id="brand" name="phoneBrand">
 					<option>Samsung</option>
 					<option>Iphone</option>
 					<option>Xiaomi</option>
@@ -29,15 +29,15 @@
 					<option>Inne</option>
 				</select><br>
 				<label for="model">Model telefonu:</label>
-				<input id="model" name="modeltelefonu" type="text"><br>
+				<input id="model" type="text" name="phoneModel"><br>
 				<label for="phone status">Stan telefonu:</label>
-				<input id="phone status" name="stantelefonu" type="text"><br>
+				<input id="phone status" type="text" name="phoneCondition"><br>
 				<label for="max amount">Maksymalna kwota naprawy:</label>
-				<input id="max amount" name="maxkwotanaprawy" type="text"><br>
+				<input id="max amount" type="text" name="maxRepairAmount"><br>
 				<label for="owner name">Imie Nazwisko:</label>
-				<input id="owner name" name="imięinazwisko" type="text"><br>
+				<input id="owner name" type="text" name="clientName"><br>
 				<label for="phone number">Numer telefonu:</label>
-				<input id="phone number" name="numertelefonu" type="text"><br>
+				<input id="phone number" type="text" name="clientPhoneNumber"><br>
 				<div style="margin-top: 30px">
 					<button>Dodaj i drukuj</button>
 				</div>
