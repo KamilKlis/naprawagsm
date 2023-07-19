@@ -24,14 +24,17 @@ public class RepairController {
 
 	
 	@RequestMapping("/kwit")
-	public String serviceLabel() {
+	public String serviceLabel(Model model) {
+		model.addAttribute("repair", new Repair());
 		return "serviceLabel";
 	}
 
 	@PostMapping("/twojeserwisy")
 	public String currentRepairs(@Valid @ModelAttribute Repair repair,BindingResult bindingResult) {
+		
 		if(bindingResult.hasErrors()) {
-			return "redirect:kwit";
+			System.out.println(bindingResult.getAllErrors());
+			return "serviceLabel";
 		}else {
 			boolean addRepair = repairService.addRepair(repair);
 			if(addRepair) {
