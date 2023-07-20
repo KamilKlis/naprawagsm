@@ -31,9 +31,7 @@ public class RepairController {
 
 	@PostMapping("/twojeserwisy")
 	public String currentRepairs(@Valid @ModelAttribute Repair repair,BindingResult bindingResult) {
-		
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
 			return "serviceLabel";
 		}else {
 			boolean addRepair = repairService.addRepair(repair);
