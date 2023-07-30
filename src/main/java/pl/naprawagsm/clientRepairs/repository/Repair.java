@@ -7,11 +7,9 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.ManyToOne;
 import pl.naprawagsm.security.repository.User;
-import pl.naprawagsm.validation.MaxRepairAmountIsNumber;
 import pl.naprawagsm.validation.PhoneNumber;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 public class Repair {

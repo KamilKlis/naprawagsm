@@ -9,8 +9,8 @@
 		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
 			<p style="width: 50%; float: left;">naprawagsm.pl</p>
 			<div style="float: right; border-left: solid gray;">
-				<button>Zarejestruj się</button>
-				<button>Zaloguj</button>
+				<button id="registerButton">Zarejestruj się</button>
+				<button id="loginButton">Zaloguj</button>
 			</div>
 		</nav>
 			
@@ -49,6 +49,14 @@
 				</div>
 			</div>
 		</form>
-		
+		<script type="text/javascript">
+			document.getElementById("loginButton").onclick=function(){
+				location.href="/login";
+			}
+			document.getElementById("registerButton").onclick=function(){
+				location.href="/register";
+			};
+			
+		</script>
 	</body>
 </html>
