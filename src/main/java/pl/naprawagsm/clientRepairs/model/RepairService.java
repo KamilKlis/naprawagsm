@@ -41,6 +41,11 @@ public class RepairService {
 		}
 		return list;
 	}
+	
+	public Repair getRepairOfCurrentUserById(Long id) {
+		String user = SecurityContextHolder.getContext().getAuthentication().getName();
+		return repairRepository.findById(id).orElseThrow(()->new UsernameNotFoundException(user));
+	}
 
 	public List<Repair> getAllRepairs(){
 		List<Repair> list=new ArrayList<Repair>();
