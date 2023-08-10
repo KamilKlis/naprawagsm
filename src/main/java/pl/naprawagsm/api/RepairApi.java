@@ -3,6 +3,7 @@ package pl.naprawagsm.api;
 import java.util.List;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +31,10 @@ public class RepairApi {
 	public RepairDto getRepairById(@PathVariable Long id) {
 		RepairDto repair = repairService.getRepairOfCurrentUserById(id);
 		return repair;
+	}
+	
+	@DeleteMapping("/api/repairs/{id}")
+	public void deleteRepair(@PathVariable Long id) {
+		repairService.deleteRepair(id);
 	}
 }

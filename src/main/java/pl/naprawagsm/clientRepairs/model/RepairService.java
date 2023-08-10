@@ -74,4 +74,8 @@ public class RepairService {
 			return false;
 		}
 	}
+	
+	public void deleteRepair(Long id) {
+		repairRepository.deleteById(id);
+	}
 }
