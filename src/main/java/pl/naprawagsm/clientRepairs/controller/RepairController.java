@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 import pl.naprawagsm.clientRepairs.model.RepairService;
-import pl.naprawagsm.clientRepairs.repository.Repair;
+import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
 
 @Controller
 public class RepairController {
@@ -21,17 +21,17 @@ public class RepairController {
 		super();
 		this.repairService = repairService;
 	}
-
 	
 	@RequestMapping("/kwit")
 	public String serviceLabel(Model model) {
-		model.addAttribute("repair", new Repair());
+		model.addAttribute("repair", new RepairDto());
 		return "serviceLabel";
 	}
 
 	@PostMapping("/twojeserwisy")
-	public String currentRepairs(@Valid @ModelAttribute Repair repair,BindingResult bindingResult) {
+	public String currentRepairs(@Valid @ModelAttribute("repair") RepairDto repair,BindingResult bindingResult,Model model) {
 		if(bindingResult.hasErrors()) {
+			System.out.println(repair);
 			return "serviceLabel";
 		}else {
 			boolean addRepair = repairService.addRepair(repair);

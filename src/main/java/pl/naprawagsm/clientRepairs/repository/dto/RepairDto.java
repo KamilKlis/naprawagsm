@@ -2,14 +2,24 @@ package pl.naprawagsm.clientRepairs.repository.dto;
 
 import java.util.Objects;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import pl.naprawagsm.validation.PhoneNumber;
+
 public class RepairDto {
 	
 	private String phoneBrand;
+	@NotBlank
 	private String phoneModel;
+	@NotBlank
 	private String phoneCondition;
+	@NotBlank
 	private String faultDescription;
+	@Min(value = 0L)
 	private int maxRepairAmount;
+	@NotBlank
 	private String clientName;
+	@PhoneNumber
 	private String clientPhoneNumber;
 	
 	public RepairDto(String phoneBrand, String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,

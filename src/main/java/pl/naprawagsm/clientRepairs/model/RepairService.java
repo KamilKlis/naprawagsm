@@ -17,15 +17,17 @@ import pl.naprawagsm.security.repository.UserRepository;
 @Service
 public class RepairService {
 	
+	private RepairMapper repairMapper;
 	private RepairRepository repairRepository;
 	private UserRepository userRepository;
-
-	public RepairService(RepairRepository repairRepository, UserRepository userRepository) {
+	
+	public RepairService(RepairMapper repairMapper, RepairRepository repairRepository, UserRepository userRepository) {
 		super();
+		this.repairMapper = repairMapper;
 		this.repairRepository = repairRepository;
 		this.userRepository = userRepository;
 	}
-	
+
 	public List<RepairDto> getRepairsOfCurrentUser(){
 		List<RepairDto> list=new ArrayList<>();
 		String user = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -35,15 +37,14 @@ public class RepairService {
 		List<Repair> finddedRepairsList = repairRepository.findAllByUser_id(userId);
 		for(Repair repair:finddedRepairsList) {
 			if(repair.getUser().getId().equals(userId)) {
-				RepairDto repairDto = RepairMapper.map(repair);
-				list.add(repairDto);
+				list.add(repairMapper.map(repair));
 			}
 		}
 		return list;
 	}
 	
 	public RepairDto getRepairOfCurrentUserById(Long id) {
-		return repairRepository.findById(id).map(repair2->RepairMapper.map(repair2))
+		return repairRepository.findById(id).map(repair->repairMapper.map(repair))
 				.orElseThrow(()->new IllegalArgumentException());
 	}
 
@@ -51,26 +52,26 @@ public class RepairService {
 		List<RepairDto> list=new ArrayList<>();
 		Iterator<Repair> repairs = repairRepository.findAll().iterator();
 		while(repairs.hasNext()) {
-			RepairDto repairDto = RepairMapper.map(repairs.next());
+			RepairDto repairDto = repairMapper.map(repairs.next()) ;
 			list.add(repairDto);
 		}
 		return list;
 	}
 	
-	public boolean addRepair(Repair repair) {
+	public boolean addRepair(RepairDto repairDto) {
+		Repair repair = repairMapper.map(repairDto);
 		List<RepairDto> allRepairs = getAllRepairs();
 		String user = SecurityContextHolder.getContext().getAuthentication().getName();
 		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
 				() -> new UsernameNotFoundException(user));
 		finddedUsername.getRepairs().add(repair);
-		if(!allRepairs.contains(RepairMapper.map(repair))) {
+		if(!allRepairs.contains(repairDto)) {
 			repair.setUser(finddedUsername);
 			repairRepository.save(repair);
 			userRepository.save(finddedUsername);
 			return true;
 		}
 		else {
-			System.out.println("Notatka jest juz zapisana");
 			return false;
 		}
 	}
