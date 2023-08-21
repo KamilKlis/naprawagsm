@@ -88,6 +88,7 @@ public class RepairService {
 		}else {
 			return Optional.empty();
 		}
+<<<<<<< HEAD
 		
 		/*
 		 * Optional<Repair> finddedRepair = repairRepository.findById(id); Repair
@@ -96,6 +97,8 @@ public class RepairService {
 		 * finddedRepair.map(repair->repairRepository.save(repairToSave))
 		 * .orElseThrow(()->new IllegalArgumentException()); return repairDto;
 		 */
+=======
+>>>>>>> 2044293 (Added updateRepair in RepairApi)
 	}
 	
 	public void deleteRepair(Long id) {
