@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.naprawagsm.clientRepairs.model.RepairService;
+import pl.naprawagsm.clientRepairs.repository.Repair;
 import pl.naprawagsm.clientRepairs.repository.RepairRepository;
 import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
 
@@ -39,6 +41,11 @@ public class RepairApi {
 	public RepairDto addRepair(@RequestBody RepairDto repair) {
 		repairService.addRepair(repair);
 		return repair;
+	}
+	
+	@PutMapping("/api/repairs/{id}")
+	public RepairDto updateRepair(@PathVariable Long id, @RequestBody RepairDto repair) {
+		return repairService.updateRepair(id,repair).orElseThrow(()->new IllegalArgumentException());
 	}
 	
 	@DeleteMapping("/api/repairs/{id}")

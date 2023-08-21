@@ -3,9 +3,12 @@ package pl.naprawagsm.clientRepairs.model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.naprawagsm.clientRepairs.repository.Repair;
 import pl.naprawagsm.clientRepairs.repository.RepairRepository;
@@ -74,6 +77,25 @@ public class RepairService {
 		else {
 			return false;
 		}
+	}
+	
+	public Optional<RepairDto> updateRepair(Long id, RepairDto repairDto) {
+		if(repairRepository.existsById(id)) {
+			Repair repairToSave = repairMapper.map(repairDto);
+			repairToSave.setId(id);
+			repairRepository.save(repairToSave);
+			return Optional.of(repairDto);
+		}else {
+			return Optional.empty();
+		}
+		
+		/*
+		 * Optional<Repair> finddedRepair = repairRepository.findById(id); Repair
+		 * repairToSave = repairMapper.map(repairDto);
+		 * repairToSave.setId(finddedRepair.get().getId());
+		 * finddedRepair.map(repair->repairRepository.save(repairToSave))
+		 * .orElseThrow(()->new IllegalArgumentException()); return repairDto;
+		 */
 	}
 	
 	public void deleteRepair(Long id) {
