@@ -8,7 +8,6 @@ import java.util.Optional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.naprawagsm.clientRepairs.repository.Repair;
 import pl.naprawagsm.clientRepairs.repository.RepairRepository;
@@ -88,17 +87,6 @@ public class RepairService {
 		}else {
 			return Optional.empty();
 		}
-<<<<<<< HEAD
-		
-		/*
-		 * Optional<Repair> finddedRepair = repairRepository.findById(id); Repair
-		 * repairToSave = repairMapper.map(repairDto);
-		 * repairToSave.setId(finddedRepair.get().getId());
-		 * finddedRepair.map(repair->repairRepository.save(repairToSave))
-		 * .orElseThrow(()->new IllegalArgumentException()); return repairDto;
-		 */
-=======
->>>>>>> 2044293 (Added updateRepair in RepairApi)
 	}
 	
 	public void deleteRepair(Long id) {
