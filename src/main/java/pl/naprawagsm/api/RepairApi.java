@@ -1,8 +1,10 @@
 package pl.naprawagsm.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +35,10 @@ public class RepairApi {
 	}
 	
 	@GetMapping("/{id}")
-	public RepairDto getRepairById(@PathVariable Long id) {
-		RepairDto repair = repairService.getRepairOfCurrentUserById(id);
-		return repair;
+	public ResponseEntity<RepairDto> getRepairById(@PathVariable Long id) {
+		Optional<RepairDto> finddedRepair = repairService.getRepairOfCurrentUserById(id);
+		return finddedRepair.map(repair->ResponseEntity.ok(repair))
+			.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@PostMapping()

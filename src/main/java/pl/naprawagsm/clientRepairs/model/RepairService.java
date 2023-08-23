@@ -45,9 +45,15 @@ public class RepairService {
 		return list;
 	}
 	
-	public RepairDto getRepairOfCurrentUserById(Long id) {
-		return repairRepository.findById(id).map(repair->repairMapper.map(repair))
-				.orElseThrow(()->new IllegalArgumentException());
+	public Optional<RepairDto> getRepairOfCurrentUserById(Long id) {
+		Optional<Repair> finddedRepair = repairRepository.findById(id);
+		if(finddedRepair.isPresent()) {
+			RepairDto finddedRepairDto = repairMapper.map(finddedRepair.get());
+			return Optional.of(finddedRepairDto);
+		}
+		else {
+			return Optional.empty();
+		}
 	}
 
 	public List<RepairDto> getAllRepairs(){
