@@ -32,9 +32,7 @@ public class RepairService {
 
 	public List<RepairDto> getRepairsOfCurrentUser(){
 		List<RepairDto> list=new ArrayList<>();
-		String user = SecurityContextHolder.getContext().getAuthentication().getName();
-		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
-				() -> new UsernameNotFoundException(user));
+		User finddedUsername = findCurrentAuthorizedUser();
 		Long userId = finddedUsername.getId();
 		List<Repair> finddedRepairsList = repairRepository.findAllByUser_id(userId);
 		for(Repair repair:finddedRepairsList) {
@@ -69,14 +67,12 @@ public class RepairService {
 	public boolean addRepair(RepairDto repairDto) {
 		Repair repair = repairMapper.map(repairDto);
 		List<RepairDto> allRepairs = getAllRepairs();
-		String user = SecurityContextHolder.getContext().getAuthentication().getName();
-		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
-				() -> new UsernameNotFoundException(user));
-		finddedUsername.getRepairs().add(repair);
+		User finddedUser = findCurrentAuthorizedUser();
+		finddedUser.getRepairs().add(repair);
 		if(!allRepairs.contains(repairDto)) {
-			repair.setUser(finddedUsername);
+			repair.setUser(finddedUser);
 			repairRepository.save(repair);
-			userRepository.save(finddedUsername);
+			userRepository.save(finddedUser);
 			return true;
 		}
 		else {
@@ -88,6 +84,8 @@ public class RepairService {
 		if(repairRepository.existsById(id)) {
 			Repair repairToSave = repairMapper.map(repairDto);
 			repairToSave.setId(id);
+			User finddedUsername = findCurrentAuthorizedUser();
+			repairToSave.setUser(finddedUsername);
 			repairRepository.save(repairToSave);
 			return Optional.of(repairDto);
 		}else {
@@ -97,5 +95,12 @@ public class RepairService {
 	
 	public void deleteRepair(Long id) {
 		repairRepository.deleteById(id);
+	}
+	
+	private User findCurrentAuthorizedUser() {
+		String user = SecurityContextHolder.getContext().getAuthentication().getName();
+		User finddedUsername = userRepository.findByUsername(user).orElseThrow(
+				() -> new UsernameNotFoundException(user));
+		return finddedUsername;
 	}
 }
