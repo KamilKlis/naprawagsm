@@ -48,8 +48,9 @@ public class RepairApi {
 	}
 	
 	@PutMapping("/{id}")
-	public RepairDto updateRepair(@PathVariable Long id, @RequestBody RepairDto repair) {
-		return repairService.updateRepair(id,repair).orElseThrow(()->new IllegalArgumentException());
+	public ResponseEntity<RepairDto> updateRepair(@PathVariable Long id, @RequestBody RepairDto repair) {
+		return repairService.updateRepair(id,repair).map(mappedRepair->ResponseEntity.ok(mappedRepair))
+				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@DeleteMapping("/{id}")
