@@ -35,7 +35,7 @@ public class RepairController {
 		}else {
 			boolean addRepair = repairService.addRepair(repair);
 			if(addRepair) {
-				return "redirect:serwis?model=";
+				return "redirect:serwis?model=" + repair.getPhoneModel();
 			}
 			else {
 				return "redirect:duplicate";

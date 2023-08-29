@@ -30,7 +30,7 @@ public class Repair {
 	private String clientName;
 	@PhoneNumber
 	private String clientPhoneNumber;
-	@ManyToOne
+	@ManyToOne()
 	private User user;
 	
 	

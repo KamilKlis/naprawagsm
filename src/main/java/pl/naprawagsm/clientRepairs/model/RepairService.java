@@ -93,8 +93,14 @@ public class RepairService {
 		}
 	}
 	
-	public void deleteRepair(Long id) {
-		repairRepository.deleteById(id);
+	public Optional<RepairDto> deleteRepair(Long id) {
+		Optional<Repair> finddedRepair = repairRepository.findById(id);
+		if(finddedRepair.isPresent()) {
+			repairRepository.deleteById(id);
+			return Optional.of(repairMapper.map(finddedRepair.get()));
+		}else {
+			return Optional.empty();
+		}
 	}
 	
 	private User findCurrentAuthorizedUser() {

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.naprawagsm.clientRepairs.model.RepairService;
-import pl.naprawagsm.clientRepairs.repository.RepairRepository;
 import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
 
 @RestController
@@ -23,7 +22,7 @@ import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
 public class RepairApi {
 	private RepairService repairService;
 	
-	public RepairApi(RepairRepository repository, RepairService repairService) {
+	public RepairApi(RepairService repairService) {
 		super();
 		this.repairService = repairService;
 	}
@@ -54,7 +53,8 @@ public class RepairApi {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteRepair(@PathVariable Long id) {
-		repairService.deleteRepair(id);
+	public ResponseEntity<?> deleteRepair(@PathVariable Long id) {
+		return repairService.deleteRepair(id).map(repair->ResponseEntity.noContent().build())
+			.orElse(ResponseEntity.notFound().build());
 	}
 }
