@@ -21,10 +21,12 @@ public class RepairDto {
 	private String clientName;
 	@PhoneNumber
 	private String clientPhoneNumber;
+	private Long id;
 	
-	public RepairDto(String phoneBrand, String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,
+	public RepairDto(Long id, String phoneBrand, String phoneModel, String phoneCondition, String faultDescription, int maxRepairAmount,
 			String clientName, String clientPhoneNumber) {
 		super();
+		this.id = id;
 		this.phoneBrand = phoneBrand;
 		this.phoneModel = phoneModel;
 		this.phoneCondition = phoneCondition;
@@ -90,6 +92,14 @@ public class RepairDto {
 
 	public void setClientPhoneNumber(String clientPhoneNumber) {
 		this.clientPhoneNumber = clientPhoneNumber;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package pl.naprawagsm.api;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import pl.naprawagsm.clientRepairs.model.RepairService;
 import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
@@ -41,9 +43,12 @@ public class RepairApi {
 	}
 	
 	@PostMapping()
-	public RepairDto addRepair(@RequestBody RepairDto repair) {
+	public ResponseEntity<RepairDto> addRepair(@RequestBody RepairDto repair) {
 		repairService.addRepair(repair);
-		return repair;
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("{/id}").buildAndExpand(repair.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@PutMapping("/{id}")

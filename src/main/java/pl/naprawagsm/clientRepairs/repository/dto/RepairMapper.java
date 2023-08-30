@@ -7,7 +7,7 @@ import pl.naprawagsm.clientRepairs.repository.Repair;
 public class RepairMapper {
 	
 	public RepairDto map(Repair repair) {
-		return new RepairDto(repair.getPhoneBrand(), repair.getPhoneModel(), repair.getPhoneCondition(),
+		return new RepairDto(repair.getId(),repair.getPhoneBrand(), repair.getPhoneModel(), repair.getPhoneCondition(),
 										  repair.getFaultDescription(), repair.getMaxRepairAmount(), repair.getClientName(),
 										  repair.getClientPhoneNumber());
 	}
