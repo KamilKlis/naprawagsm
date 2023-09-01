@@ -14,7 +14,7 @@
 			</div>
 		</nav>
 			
-		<form action="twojeserwisy" method="post" th:object="${repair}">
+		<form th:action="@{/twojeserwisy}" method="post" th:object="${repair}">
 			<div align="center" style="margin-top: 50px">
 				<label for="repair description">Opis usterki:</label>
 					<textarea id="repair description" rows="10" cols="40" name="faultDescription"></textarea><br><br>

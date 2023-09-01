@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -23,8 +24,8 @@ public class SecurityConfig {
 		http.formLogin(form->form
 				.loginPage("/login").permitAll());
 		http.logout(logout->logout
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.GET.name()))
 				.logoutSuccessUrl("/bye").permitAll());
-		http.csrf().disable();
 		return http.build();
 	}
 	

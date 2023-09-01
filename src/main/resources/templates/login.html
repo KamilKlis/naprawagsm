@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/login" method="post">
+	<form th:action="@{/login}" method="post">
 		<input id="username" name="username" type="text">
 		<input id="password" name="password" type="password">
 		<button type="submit">Zaloguj</button>
