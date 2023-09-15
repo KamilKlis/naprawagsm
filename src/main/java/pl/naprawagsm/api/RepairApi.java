@@ -28,7 +28,7 @@ import pl.naprawagsm.clientRepairs.model.RepairService;
 import pl.naprawagsm.clientRepairs.repository.dto.RepairDto;
 
 @RestController
-@RequestMapping("/api/repairs")
+@RequestMapping(path = "/api/repairs",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_ATOM_XML_VALUE})
 public class RepairApi {
 	private RepairService repairService;
 	
@@ -37,7 +37,7 @@ public class RepairApi {
 		this.repairService = repairService;
 	}
 
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping
 	public List<RepairDto> getAllRepairs() {
 		List<RepairDto> repairsOfCurrentUser = repairService.getRepairsOfCurrentUser();
 		return repairsOfCurrentUser;
