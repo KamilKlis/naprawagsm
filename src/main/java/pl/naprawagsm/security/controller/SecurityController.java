@@ -33,7 +33,7 @@ public class SecurityController {
 	}
 	
 	@RequestMapping("/bye")
-	public String logout() {
+	public String bye() {
 		return "logout";
 	}
 

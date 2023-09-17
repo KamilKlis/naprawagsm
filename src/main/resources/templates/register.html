@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<nav th:replace="~{fragments::nav}">Navigation</nav>
 <h1>Rejestracja</h1>
 	<form th:action="@{/registerSuccess}" method="post">
 		<label>

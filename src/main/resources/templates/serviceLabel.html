@@ -5,15 +5,7 @@
 <title>Insert title here</title>
 </head>
 	<body>
-		<nav
-		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
-			<p style="width: 50%; float: left;">naprawagsm.pl</p>
-			<div style="float: right; border-left: solid gray;">
-				<button id="registerButton">Zarejestruj się</button>
-				<button id="loginButton">Zaloguj</button>
-			</div>
-		</nav>
-			
+		<nav th:replace="~{fragments::nav}">Navigation</nav>
 		<form th:action="@{/twojeserwisy}" method="post" th:object="${repair}">
 			<div align="center" style="margin-top: 50px">
 				<label for="repair description">Opis usterki:</label>

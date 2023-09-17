@@ -8,7 +8,8 @@
 
 </head>
 <body >
-<h1>Logowanie</h1>
+	<nav th:replace="~{fragments::nav}">Navigation</nav>
+	<h1>Logowanie</h1>
 	<form th:action="@{/login}" method="post">
 		<input id="username" name="username" type="text">
 		<input id="password" name="password" type="password">

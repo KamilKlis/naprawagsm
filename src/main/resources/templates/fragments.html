@@ -1,67 +1,22 @@
 <!DOCTYPE html>
-<html  lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html  lang="pl" xmlns:th="http://www.thymeleaf.org"
+	   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Naprawa GSM</title>
-	<style type="text/css">
-		table {
-			 width: 80%;align-content: center;text-align: center;
-		}
-	
-		table,th,td {
-			border:solid gray;border-collapse: collapse;
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="../styles/main.css">
-	</head>
+<title>Insert title here</title>
+</head>
 <body>
-	<nav th:replace="~{fragments::nav}">Navigation</nav>
-	<main style="display: flex;">
-		<section id="priceListMainSection" style="width: 70%;">
-			<div id="priceListButtons" align="center">
-				<button id="samsungButton">Samsung</button>
-				<button id="appleButton">Iphone</button>
-				<button id="xiaomiButton">Xiaomi</button>
-				<button id="motorolaButton">Motorola</button>
-				<button id="huaweiButton">Huawei</button>
-				<button id="sonyButton">Sony</button>
-				<button id="othersButton">Inne</button>
-			</div>
-			<div id="priceListTable"
-				style="margin-bottom: 30px; display: flex; justify-content: center;">
-				<div id="priceListToChange"
-					style="flex: 70%; display: flex; align-items: center; justify-content: center;">
-					<table>
-						<tr>
-							<th>MODEL</th>
-							<th>LCD</th>
-							<th>BATERIA</th>
-							<th>GŁOŚNIK</th>
-						</tr>
-						<tr id="pricelistRow" th:each="repair : ${repairPrices}">
-							<td th:if="${repair.brand eq 'Iphone'}" id="model" th:text="${repair.model}">Samsung A40</td>
-							<td th:if="${repair.brand eq 'Iphone'}" id="lcd" th:text="${repair.lcd}">99999</td>
-							<td th:if="${repair.brand eq 'Iphone'}" id="battery" th:text="${repair.battery}">88888</td>
-							<td th:if="${repair.brand eq 'Iphone'}" id="speaker" th:text="${repair.speaker}">77777</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</section>
-		<section id="clientRepairs" 
-			style="width: 30%;">
-			<div>
-				<a href="kwit"><button>Wypisz kwit serwisowy</button></a>
-			</div>
-			<div>
-				<a href="https://inpost.pl/wysylam"><button>Zamów kuriera</button></a>
-			</div>
-			<div>
-				<a href="serwis"><button>Zobacz aktualne serwisy</button></a>
-			</div>
-		</section>
-	</main>
-
+	<nav th:fragment="nav"
+		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+		<img alt="telefon" src="../img/phone.png" width="20px" height="30px">&nbsp;
+		<p style="width: 50%; float: left;">naprawagsm.pl</p>
+		<div style="float: right; border-left: solid gray;">
+			<button id="logoutButton" sec:authorize="isAuthenticated()">Wyloguj się</button>
+			<button sec:authorize="!isAuthenticated()">Zarejestruj się</button>
+			<button sec:authorize="!isAuthenticated()">Zaloguj</button>
+		</div>
+	</nav>
+</body>
 	<script th:inline="javascript">
 		logoutButtonEvent();
 		function logoutButtonEvent(){
@@ -138,5 +93,4 @@
 				}
 			}
 	</script>
-</body>
 </html>
