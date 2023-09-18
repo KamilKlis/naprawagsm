@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html  lang="pl" xmlns:th="http://www.thymeleaf.org"
 	   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
 	<nav th:fragment="nav"
@@ -12,85 +12,9 @@
 		<p style="width: 50%; float: left;">naprawagsm.pl</p>
 		<div style="float: right; border-left: solid gray;">
 			<button id="logoutButton" sec:authorize="isAuthenticated()">Wyloguj się</button>
-			<button sec:authorize="!isAuthenticated()">Zarejestruj się</button>
-			<button sec:authorize="!isAuthenticated()">Zaloguj</button>
+			<button id="registerButton" sec:authorize="!isAuthenticated()">Zarejestruj się</button>
+			<button id="loginButton" sec:authorize="!isAuthenticated()">Zaloguj</button>
 		</div>
 	</nav>
 </body>
-	<script th:inline="javascript">
-		logoutButtonEvent();
-		function logoutButtonEvent(){
-			document.getElementById("logoutButton").onclick=function(){
-				location.href="/logout";
-			}
-		}
-	
-	
-		let allButtonsList=["samsungButton","appleButton","xiaomiButton","motorolaButton","huaweiButton","sonyButton","othersButton"];
-		setPriceListButtonEvents();
-		
-		function setPriceListButtonEvents(){
-			for(i=0;i<allButtonsList.length;i++){
-				clickButton(allButtonsList[i]);
-			}
-		}
-		
-			function clickButton(buttonId){
-				let selectedButton=document.getElementById(buttonId);
-				selectedButton.addEventListener("click",addTableRow);
-			
-				function addTableRow(){
-					let allRepairsList=/*[[${repairPrices}]]*/ "list";
-					let newList=new Array;
-					let priceListTable=document.getElementById("priceListToChange");
-					writeToNewList(selectedButton.innerText);
-					createNewTableRow();
-					
-					
-					function writeToNewList(brand){
-						for(let repair of allRepairsList){
-							if(repair.brand===brand){
-								newList.push(repair);
-							}
-						}
-					}
-					function createNewTableRow(){
-						let tableWithSelectedValues=document.createElement("table");
-						addHeadersToTable();
-						addValuesToTable();
-						priceListTable.replaceChildren(tableWithSelectedValues);
-						
-							function addHeadersToTable(){
-								createSingleRow("MODEL","LCD","BATERIA","GŁOŚNIK");
-							}
-							function addValuesToTable(){
-								for(i=0;i<newList.length;i++){
-									createSingleRow(newList[i].model,newList[i].lcd,newList[i].battery,newList[i].speaker);
-								}
-							}	
-								function createSingleRow(model,lcd,battery,speaker){
-									let newRow=document.createElement("tr");
-									let newTd1=document.createElement("td");
-									let newTd2=document.createElement("td");
-									let newTd3=document.createElement("td");
-									let newTd4=document.createElement("td");
-									let newTdText1=document.createTextNode(model);
-									let newTdText2=document.createTextNode(lcd);
-									let newTdText3=document.createTextNode(battery);
-									let newTdText4=document.createTextNode(speaker);
-									newTd1.appendChild(newTdText1);
-									newTd2.appendChild(newTdText2);
-									newTd3.appendChild(newTdText3);
-									newTd4.appendChild(newTdText4);
-									newRow.appendChild(newTd1);
-									newRow.appendChild(newTd2);
-									newRow.appendChild(newTd3);
-									newRow.appendChild(newTd4);
-									tableWithSelectedValues.appendChild(newRow);
-								} 
-
-					}
-				}
-			}
-	</script>
 </html>

@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" >
-<title >Insert title here</title>
-
-<link rel="stylesheet" type="text/css" href="../styles/main.css">
+<head th:replace="~{fragments::head(title='Logout')}">
 
 </head>
-<body >
+<body>
 	<nav th:replace="~{fragments::nav}">Navigation</nav>
 	<h1>Logowanie</h1>
 	<form th:action="@{/login}" method="post">
@@ -15,5 +11,6 @@
 		<input id="password" name="password" type="password">
 		<button type="submit">Zaloguj</button>
 	</form>
+	<script type="text/javascript" src="../javascripts/main.js"></script>
 </body>
 </html>

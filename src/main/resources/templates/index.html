@@ -61,16 +61,8 @@
 			</div>
 		</section>
 	</main>
-
+	<script type="text/javascript" src="../javascripts/main.js"></script>
 	<script th:inline="javascript">
-		logoutButtonEvent();
-		function logoutButtonEvent(){
-			document.getElementById("logoutButton").onclick=function(){
-				location.href="/logout";
-			}
-		}
-	
-	
 		let allButtonsList=["samsungButton","appleButton","xiaomiButton","motorolaButton","huaweiButton","sonyButton","othersButton"];
 		setPriceListButtonEvents();
 		
