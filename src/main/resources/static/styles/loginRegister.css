@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+h1 {
+  color: blue;
+  margin: 0 auto;
+}
+
+
+.formButton{
+	background-color: #5cadff;
+	color: white;
+}
+
+.container {
+  border:solid gray;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #f7f7fa;
+  text-align: center;
+  align-items:stretch;
+  width: 500px;
+  min-height:250px;
+  margin: 0 auto;
+  margin-top: 10%;
+  
+}
+
+.container form input {
+  margin: 2%;
+  width: 80%;
+  text-align: center;
+  height: 40px;
+}
+
+
+body{
+	background-color: #e8e8f0;
+}
+
+

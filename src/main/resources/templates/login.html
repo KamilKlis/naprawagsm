@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments::head(title='Logout')}">
-
+<head>
+	<title>Login</title>
+	<meta th:replace="~{fragments::charset}">
+	<link rel="stylesheet" type="text/css" href="../styles/loginRegister.css">
 </head>
 <body>
 	<nav th:replace="~{fragments::nav}">Navigation</nav>
-	<h1>Logowanie</h1>
-	<form th:action="@{/login}" method="post">
-		<input id="username" name="username" type="text">
-		<input id="password" name="password" type="password">
-		<button type="submit">Zaloguj</button>
-	</form>
+	<div class="container">
+		
+		<form th:action="@{/login}" method="post">
+			<h1>Logowanie</h1>
+			<input id="username" name="username" type="text" placeholder="Nazwa użytkownika"><br>
+			<input id="password" name="password" type="password" placeholder="Hasło"><br>
+			<input class="formButton" type="submit" value="Zaloguj się"><br>
+		</form>
+	</div>
 	<script type="text/javascript" src="../javascripts/main.js"></script>
 </body>
 </html>

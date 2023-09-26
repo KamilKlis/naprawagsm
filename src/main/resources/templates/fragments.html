@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html  lang="pl" xmlns:th="http://www.thymeleaf.org"
 	   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:fragment="head">
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-</head>
+<meta th:fragment="charset" charset="UTF-8">
 <body>
 	<nav th:fragment="nav"
-		style="border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+		style="background-color:#5cadff; border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
 		<img alt="telefon" src="../img/phone.png" width="20px" height="30px">&nbsp;
-		<p style="width: 50%; float: left;">naprawagsm.pl</p>
+		<p style="width: 50%; float: left;color:white">naprawagsm.pl</p>
 		<div style="float: right; border-left: solid gray;">
 			<button id="logoutButton" sec:authorize="isAuthenticated()">Wyloguj się</button>
 			<button id="registerButton" sec:authorize="!isAuthenticated()">Zarejestruj się</button>

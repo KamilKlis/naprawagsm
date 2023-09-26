@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>Register</title>
+	<meta th:replace="~{fragments::charset}">
+	<link rel="stylesheet" type="text/css" href="../styles/loginRegister.css">
 </head>
 <body>
-<nav th:replace="~{fragments::nav}">Navigation</nav>
-<h1>Rejestracja</h1>
-	<form th:action="@{/registerSuccess}" method="post">
-		<label>
-			e-mail: <input type="text" name="username">
-		</label>
-		<label>
-			Hasło: <input type="password" name="password">
-		</label>
-		<input type="submit" value="Zarejestruj się">
-	</form>
+	<nav th:replace="~{fragments::nav}">Navigation</nav>
+	<div class="container">
+		<form th:action="@{/registerSuccess}" method="post">
+			<h1>Rejestracja</h1>
+			<input type="text" name="username" placeholder="Nazwa użytkownika"><br>
+			<input type="password" name="password" placeholder="Hasło"><br>
+			<input class="formButton" type="submit" value="Zarejestruj się"><br>
+		</form>
+	</div>
 	<script type="text/javascript" src="../javascripts/main.js"></script>
 </body>
 </html>
