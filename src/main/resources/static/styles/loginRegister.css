@@ -4,14 +4,11 @@ h1 {
   color: blue;
   margin: 0 auto;
 }
-
-
 .formButton{
 	background-color: #5cadff;
 	color: white;
 }
-
-.container {
+.formContainer {
   border:solid gray;
   border-radius: 20px;
   display: flex;
@@ -22,20 +19,11 @@ h1 {
   width: 500px;
   min-height:250px;
   margin: 0 auto;
-  margin-top: 10%;
-  
+  margin-top: 10%; 
 }
-
-.container form input {
+.formContainer form input {
   margin: 2%;
   width: 80%;
   text-align: center;
   height: 40px;
 }
-
-
-body{
-	background-color: #e8e8f0;
-}
-
-

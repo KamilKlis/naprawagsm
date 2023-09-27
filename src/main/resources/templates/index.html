@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html  lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Naprawa GSM</title>
-	<style type="text/css">
-		table {
-			 width: 80%;align-content: center;text-align: center;
-		}
-	
-		table,th,td {
-			border:solid gray;border-collapse: collapse;
-		}
-	</style>
+	<meta charset="UTF-8">
+	<title>Naprawa GSM</title>
 	<link rel="stylesheet" type="text/css" href="../styles/main.css">
-	</head>
+	<link rel="stylesheet" type="text/css" href="../styles/table.css">
+</head>
 <body>
 	<nav th:replace="~{fragments::nav}">Navigation</nav>
 	<main style="display: flex;">
@@ -27,10 +19,8 @@
 				<button id="sonyButton">Sony</button>
 				<button id="othersButton">Inne</button>
 			</div>
-			<div id="priceListTable"
-				style="margin-bottom: 30px; display: flex; justify-content: center;">
-				<div id="priceListToChange"
-					style="flex: 70%; display: flex; align-items: center; justify-content: center;">
+			<div id="priceListTable">
+				<div id="priceListToChange">
 					<table>
 						<tr>
 							<th>MODEL</th>
@@ -98,33 +88,40 @@
 						priceListTable.replaceChildren(tableWithSelectedValues);
 						
 							function addHeadersToTable(){
-								createSingleRow("MODEL","LCD","BATERIA","GŁOŚNIK");
+								createSingleHeaderRow("MODEL","LCD","BATERIA","GŁOŚNIK");
 							}
 							function addValuesToTable(){
 								for(i=0;i<newList.length;i++){
-									createSingleRow(newList[i].model,newList[i].lcd,newList[i].battery,newList[i].speaker);
+									createSingleDataRow(newList[i].model,newList[i].lcd,newList[i].battery,newList[i].speaker);
 								}
-							}	
-								function createSingleRow(model,lcd,battery,speaker){
-									let newRow=document.createElement("tr");
-									let newTd1=document.createElement("td");
-									let newTd2=document.createElement("td");
-									let newTd3=document.createElement("td");
-									let newTd4=document.createElement("td");
-									let newTdText1=document.createTextNode(model);
-									let newTdText2=document.createTextNode(lcd);
-									let newTdText3=document.createTextNode(battery);
-									let newTdText4=document.createTextNode(speaker);
-									newTd1.appendChild(newTdText1);
-									newTd2.appendChild(newTdText2);
-									newTd3.appendChild(newTdText3);
-									newTd4.appendChild(newTdText4);
-									newRow.appendChild(newTd1);
-									newRow.appendChild(newTd2);
-									newRow.appendChild(newTd3);
-									newRow.appendChild(newTd4);
-									tableWithSelectedValues.appendChild(newRow);
-								} 
+							}
+								function createSingleHeaderRow(model,lcd,battery,speaker){
+									createSingleRow("th",model,lcd,battery,speaker);
+								}
+								function createSingleDataRow(model,lcd,battery,speaker){
+									createSingleRow("td",model,lcd,battery,speaker);
+								}
+								
+									function createSingleRow(thOrTd,model,lcd,battery,speaker){
+										let newRow=document.createElement("tr");
+										let newTd1=document.createElement(thOrTd);
+										let newTd2=document.createElement(thOrTd);
+										let newTd3=document.createElement(thOrTd);
+										let newTd4=document.createElement(thOrTd);
+										let newTdText1=document.createTextNode(model);
+										let newTdText2=document.createTextNode(lcd);
+										let newTdText3=document.createTextNode(battery);
+										let newTdText4=document.createTextNode(speaker);
+										newTd1.appendChild(newTdText1);
+										newTd2.appendChild(newTdText2);
+										newTd3.appendChild(newTdText3);
+										newTd4.appendChild(newTdText4);
+										newRow.appendChild(newTd1);
+										newRow.appendChild(newTd2);
+										newRow.appendChild(newTd3);
+										newRow.appendChild(newTd4);
+										tableWithSelectedValues.appendChild(newRow);
+									} 
 
 					}
 				}

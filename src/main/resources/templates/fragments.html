@@ -3,11 +3,10 @@
 	   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta th:fragment="charset" charset="UTF-8">
 <body>
-	<nav th:fragment="nav"
-		style="background-color:#5cadff; border-bottom: solid gray; height: 40px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;">
+	<nav th:fragment="nav" id="mainNavigation">
 		<img alt="telefon" src="../img/phone.png" width="20px" height="30px">&nbsp;
-		<p style="width: 50%; float: left;color:white">naprawagsm.pl</p>
-		<div style="float: right; border-left: solid gray;">
+		<p>naprawagsm.pl</p>
+		<div id="authenticationButtons">
 			<button id="logoutButton" sec:authorize="isAuthenticated()">Wyloguj się</button>
 			<button id="registerButton" sec:authorize="!isAuthenticated()">Zarejestruj się</button>
 			<button id="loginButton" sec:authorize="!isAuthenticated()">Zaloguj</button>

@@ -2,16 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-	<style type="text/css">
-		table {
-			 width: 80%;align-content: center;text-align: center;
-		}
-	
-		table,th,td {
-			border:solid gray;border-collapse: collapse;
-		}
-	</style>
+<title>Current Repairs</title>
+	<link rel="stylesheet" type="text/css" href="../styles/main.css">
+	<link rel="stylesheet" type="text/css" href="../styles/table.css">
 </head>
 <body>
 	<nav th:replace="~{fragments::nav}">Navigation</nav>
@@ -19,13 +12,13 @@
 	<div>
 		<table>
 			<tr>
-				<td>IMIĘ I NAZWISKO</td>
-				<td>NUMER TELEFONU</td>
-				<td>MARKA TELEFONU</td>
-				<td>MODEL TELEFONU</td>
-				<td>MAX. KWOTA NAPRAWY</td>
-				<td>OPIS USTERKI</td>
-				<td>STAN TELEFONU</td>
+				<th>IMIĘ I NAZWISKO</th>
+				<th>NUMER TELEFONU</th>
+				<th>MARKA TELEFONU</th>
+				<th>MODEL TELEFONU</th>
+				<th>MAX. KWOTA NAPRAWY</th>
+				<th>OPIS USTERKI</th>
+				<th>STAN TELEFONU</th>
 			</tr>
 			<tr th:each="repair : ${repairList}">
 				<td th:text=${repair.clientName}></td>

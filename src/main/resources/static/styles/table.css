@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+table {
+	width: 80%;
+	align-content: center;
+	text-align: center;
+}
+	
+table,th,td {
+	border:solid black;
+	border-collapse: collapse;
+	background-color: #f5faff;
+}
+th{
+	color: blue;
+	background-color:  #e0f0ff;
+}
+td{
+	font-weight: bold;
+}
+#priceListTable{
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+}
+#priceListTable #priceListToChange{
+	flex: 70%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
