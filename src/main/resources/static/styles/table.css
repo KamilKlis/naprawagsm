@@ -2,8 +2,8 @@
 
 table {
 	width: 80%;
-	align-content: center;
 	text-align: center;
+	table-layout: fixed;
 }
 	
 table,th,td {
@@ -18,14 +18,21 @@ th{
 td{
 	font-weight: bold;
 }
+
+th,
+td{
+	width: auto;
+	width: 25%;
+}
 #priceListTable{
+	
 	margin-bottom: 30px;
 	display: flex;
 	justify-content: center;
 }
 #priceListTable #priceListToChange{
+	table-layout: auto;
 	flex: 70%;
 	display: flex;
-	align-items: center;
 	justify-content: center;
 }
