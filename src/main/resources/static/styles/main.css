@@ -1,6 +1,10 @@
 body{
 	background-color: white;
 }
+form{
+	justify-content: center;
+}
+
 #mainNavigation{
 	background-color:#5cadff;
 	border-bottom: solid gray;

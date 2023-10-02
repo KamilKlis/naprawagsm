@@ -8,6 +8,7 @@ h1 {
 	background-color: #5cadff;
 	color: white;
 }
+#formDiv,
 .formContainer {
   border:solid gray;
   border-radius: 20px;

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+form #formDiv{
+	width:600px;
+	margin-top: 50px;
+	display: flex;
+}
+#formButton,
+textarea,
+select,
+input{
+	text-align: center;
+	margin-left: 60px;
+	margin-right: 60px;
+	padding: 10px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+select {
+	font-weight: bold;
+	font-size: 18px;
+}
+textarea:focus,
+select:focus,
+input:focus{
+	background-color: #e0e0eb;
+}

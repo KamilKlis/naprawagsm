@@ -4,15 +4,17 @@
 	<title>Service Label</title>
 	<meta th:replace="~{fragments::charset}">
 	<link rel="stylesheet" type="text/css" href="../styles/main.css">
+	<link rel="stylesheet" type="text/css" href="../styles/loginRegister.css">
+	<link rel="stylesheet" type="text/css" href="../styles/form.css">
 </head>
 	<body>
 		<nav th:replace="~{fragments::nav}">Navigation</nav>
 		<form th:action="@{/twojeserwisy}" method="post" th:object="${repair}">
-			<div align="center" style="margin-top: 50px">
-				<label for="repair description">Opis usterki:</label>
-					<textarea id="repair description" rows="10" cols="40" name="faultDescription"></textarea><br><br>
+			<div id="formDiv" align="center">
+				<h1>Opis usterki:</h1>
+					<textarea id="repair description" rows="5" cols="40" name="faultDescription"></textarea><br><br>
 					<p th:errors="*{faultDescription}"></p>
-				<label for="brand">Marka telefonu:</label>
+				<h1>Marka telefonu:</h1>
 					<select id="brand" name="phoneBrand">
 						<option>Samsung</option>
 						<option>Iphone</option>
@@ -21,24 +23,19 @@
 						<option>Huawei</option>
 						<option>Sony</option>
 						<option>Inne</option>
-					</select><br>
-				<label for="model">Model telefonu:</label>
-					<input id="model" type="text" name="phoneModel"><br>
+					</select>
+					<input id="model" type="text" name="phoneModel" placeholder="Model telefonu">
 					<p th:errors="*{phoneModel}"></p>
-				<label for="phone status">Stan telefonu:</label>
-					<input id="phone status" type="text" name="phoneCondition"><br>
+					<input id="phone status" type="text" name="phoneCondition" placeholder="Stan telefonu">
 					<p th:errors="*{phoneCondition}"></p>
-				<label for="max amount">Maksymalna kwota naprawy:</label>
-					<input id="max amount" type="number" name="maxRepairAmount"><br>
+					<input id="max amount" type="number" name="maxRepairAmount" placeholder="Maksymalna kwota naprawy">
 					<p th:errors="*{maxRepairAmount}"></p>
-				<label for="owner name">Imie Nazwisko:</label>
-					<input id="owner name" type="text" name="clientName"><br>
+					<input id="owner name" type="text" name="clientName" placeholder="Imie Nazwisko">
 					<p th:errors="*{clientName}"></p>
-				<label for="phone number">Numer telefonu:</label>
-					<input id="phone number" type="text" name="clientPhoneNumber"><br>
+					<input id="phone number" type="text" name="clientPhoneNumber" placeholder="Numer telefonu">
 					<p th:errors="*{clientPhoneNumber}"></p>
 				<div style="margin-top: 30px">
-					<button>Dodaj i drukuj</button>
+					<button class="formButton" id="formButton">Dodaj i drukuj</button>
 				</div>
 			</div>
 		</form>

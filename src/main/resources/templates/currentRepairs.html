@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav th:replace="~{fragments::nav}">Navigation</nav>
-	<h1 style="color:red" th:if="${addedRepairIsAlreadyInDatabase}">Serwis jest już wpisany do bazy</h1>
+	<h1 id="duplicate" th:if="${addedRepairIsAlreadyInDatabase}">Serwis jest już wpisany do bazy</h1>
 	<div>
 		<table>
 			<tr>

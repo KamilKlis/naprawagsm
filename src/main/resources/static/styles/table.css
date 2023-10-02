@@ -36,3 +36,6 @@ td{
 	display: flex;
 	justify-content: center;
 }
+#duplicate{
+	color: red;
+}
