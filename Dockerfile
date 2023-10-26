@@ -2,7 +2,7 @@ FROM maven:amazoncorretto as MAVEN_BUILD
 COPY ./pom.xml ./pom.xml
 RUN mvn dependency:go-offline -B
 COPY ./src ./src
-RUN mvn package
+RUN mvn clean package
 
 FROM amazoncorretto:19.0.2
 EXPOSE 8080
