@@ -1,5 +1,6 @@
 package pl.naprawagsm.security.model;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,8 +18,10 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
 		http.authorizeHttpRequests(requests->requests
 				.requestMatchers("/img/**","/styles/**","/javascripts/**").permitAll()
+				.requestMatchers(h2ConsoleRequestMatcher).permitAll()
 				.requestMatchers("/","/register","/registerSuccess","/login").permitAll()
 				.requestMatchers(HttpMethod.POST, "/logout").permitAll()
 				.anyRequest().hasAnyRole("ADMIN","USER"));
@@ -27,6 +30,8 @@ public class SecurityConfig {
 		http.logout(logout->logout
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.GET.name()))
 				.logoutSuccessUrl("/bye").permitAll());
+		http.csrf(csrf -> csrf.ignoringRequestMatchers(h2ConsoleRequestMatcher));
+		http.headers().frameOptions().sameOrigin();
 		return http.build();
 	}
 	

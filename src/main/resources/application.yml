@@ -1,12 +1,3 @@
 spring:
-   datasource: 
-      url: jdbc:mysql://localhost:3306/naprawagsm?useSSL=false&serverTimezone=Europe/Warsaw
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      username: root
-      password: Argentyna112
-   jdbc: 
-      show-sql: true
-      hibernate:
-         ddl-auto: update
-   thymeleaf:
-      encoding: UTF-8
+   profiles:
+     active: dev
