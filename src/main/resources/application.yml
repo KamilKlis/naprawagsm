@@ -1,3 +1,9 @@
 spring:
+   liquibase:
+      change-log: classpath:db/master.xml
    profiles:
-     active: prod
+     active: dev
+   sql:
+      init:
+         mode: never
+         

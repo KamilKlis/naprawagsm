@@ -20,14 +20,10 @@ public class UserService {
 		this.roles = roles;
 	}
 
-
-
 	public void saveUser(User user) {
-		
 		UserRoles role=roles.findById(2L).get();
 		Set<UserRoles> rolesSet = Set.of(role);
 		user.setRoles(rolesSet);
 		repository.save(user);
-	}
-	
+	}	
 }

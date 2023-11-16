@@ -36,5 +36,4 @@ public class SecurityController {
 	public String bye() {
 		return "logout";
 	}
-
 }

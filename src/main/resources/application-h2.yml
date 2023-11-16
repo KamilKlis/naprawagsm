@@ -10,3 +10,5 @@ spring:
          ddl-auto: update
    thymeleaf:
       encoding: UTF-8
+   liquibase:
+      contexts: h2

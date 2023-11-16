@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001-1" author="KamilKlis">
+        <createTable tableName="application_user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="username" type="VARCHAR(45)">
+     			<constraints nullable="false" unique="true"/>
+     		</column>
+            <column name="password" type="VARCHAR(200)">
+         		<constraints nullable="false"/>
+         	</column>
+        </createTable>
+        
+        <createTable tableName="price_list">
+            <column name="id" type="BIGINT" autoIncrement="true">
+            	<constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="brand" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="lcd" type="BIGINT">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="battery" type="BIGINT">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="speaker" type="BIGINT">
+            	<constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="repair">
+            <column name="id" type="BIGINT" autoIncrement="true">
+            	<constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="phone_brand" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="phone_model" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="phone_condition" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="fault_description" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="max_repair_amount" type="BIGINT">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="client_name" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="client_phone_number" type="VARCHAR(45)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT" defaultValue="1"/>
+        </createTable>
+        
+        <createTable tableName="user_role">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="user_role" type="VARCHAR(15)">
+     			<constraints nullable="false" unique="true"/>
+     		</column>
+        </createTable>
+        
+        <createTable tableName="user_roles">
+    		<column name="id" type="BIGINT" autoIncrement="true">
+        		<constraints primaryKey="true" nullable="false" unique="true"/>
+    		</column>
+    		<column name="user_id" type="BIGINT">
+        		<constraints nullable="false" 
+                     referencedTableName="application_user"
+                     referencedColumnNames="id"
+                     foreignKeyName="fk_user_roles_user_id"/>
+    		</column>
+    		<column name="role_id" type="BIGINT">
+        		<constraints nullable="false" 
+                     referencedTableName="user_role"
+                     referencedColumnNames="id"
+                     foreignKeyName="fk_user_roles_role_id"/>
+    		</column>
+		</createTable>
+    </changeSet>
+</databaseChangeLog>

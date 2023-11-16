@@ -1,8 +1,6 @@
 package pl.naprawagsm.security.repository;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,7 +8,6 @@ import jakarta.persistence.Table;
 @Table(name = "user_role")
 public class UserRoles {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String userRole;
 	
@@ -41,6 +38,4 @@ public class UserRoles {
 	public String toString() {
 		return "to jest roli [id=" + id + ", user_role=" + userRole + "]";
 	}
-	
-	
 }

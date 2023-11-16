@@ -3,10 +3,12 @@ spring:
       url: jdbc:mysql://localhost:3306/naprawagsm?useSSL=false&serverTimezone=Europe/Warsaw
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: Argentyna112
+      password: admin
    jdbc: 
       show-sql: true
       hibernate:
-         ddl-auto: update
+         ddl-auto: none
    thymeleaf:
       encoding: UTF-8
+   liquibase:
+      contexts: dev
