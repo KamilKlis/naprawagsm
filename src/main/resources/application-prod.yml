@@ -7,7 +7,7 @@ spring:
    jdbc: 
       show-sql: true
       hibernate:
-         ddl-auto: never
+         ddl-auto: none
    thymeleaf:
       encoding: UTF-8
    liquibase:
