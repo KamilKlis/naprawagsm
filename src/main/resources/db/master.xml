@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
     <include file="0001_create_all_tables.xml" relativeToChangelogFile="true" />
-    <include context="dev" file="testdata_add_user_roles_values.sql" relativeToChangelogFile="true" />
-    <include context="dev" file="testdata_add_pricelist_values.sql" relativeToChangelogFile="true" />
-    <include context="dev" file="testdata_add_admin.sql" relativeToChangelogFile="true"/>
-    <include context="dev" file="testdata_add_role_to_admin.sql" relativeToChangelogFile="true"/>
+    <include file="testdata_add_user_roles_values.sql" relativeToChangelogFile="true" />
+    <include file="testdata_add_pricelist_values.sql" relativeToChangelogFile="true" />
+    <include file="testdata_add_admin.sql" relativeToChangelogFile="true"/>
+    <include file="testdata_add_role_to_admin.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
