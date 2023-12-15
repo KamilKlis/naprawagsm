@@ -1,6 +1,12 @@
 spring:
    liquibase:
       change-log: classpath:db/master.xml
+   jpa: 
+      show-sql: true
+      hibernate:
+         ddl-auto: none
+   thymeleaf:
+      encoding: UTF-8
    profiles:
       default: dev
    sql:
