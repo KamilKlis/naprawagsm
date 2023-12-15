@@ -2,7 +2,7 @@ spring:
    liquibase:
       change-log: classpath:db/master.xml
    profiles:
-     active: dev
+      default: dev
    sql:
       init:
          mode: never
