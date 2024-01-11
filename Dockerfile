@@ -2,7 +2,7 @@ FROM maven:3.9.5-amazoncorretto-17-debian AS MAVEN_BUILD
 COPY ./pom.xml ./pom.xml
 RUN mvn dependency:go-offline -B
 COPY ./src ./src
-RUN mvn clean package
+RUN mvn package
 
 FROM openjdk:21-slim-bookworm
 EXPOSE 8080
