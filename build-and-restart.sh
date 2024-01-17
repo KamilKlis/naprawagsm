@@ -1,3 +1,4 @@
+mvn clean package
 docker build -t naprawagsm .
 docker stop naprawagsm || true
 docker rm naprawagsm || true
